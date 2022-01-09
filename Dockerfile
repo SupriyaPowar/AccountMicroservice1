@@ -2,7 +2,8 @@ FROM adoptopenjdk:11-jre-hotspot as builder
 WORKDIR app
 ARG JAR_FILE=target/*.jar
 #COPY ${JAR_FILE} application.jar
-RUN java -Djarmode=layertools -jar application.jar extract
+COPY ${JAR_FILE} app.jar
+RUN java -Djarmode=layertools -jar app.jar extract
 
 FROM adoptopenjdk:11-jre-hotspot
 WORKDIR app
